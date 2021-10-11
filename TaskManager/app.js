@@ -5,7 +5,7 @@ const connectDB =require('./db/connect')
 require('dotenv').config()
 const notFound =require('./middleware/not-found')
 const errorHandleMiddleware =require('./middleware/error-handler')
-const port = 3000
+const port = process.env.PORT || 3000
 
 //Middleware
 app.use(express.static('./public'))
