@@ -6,8 +6,8 @@ const productSchema = new mongoose.Schema(
             type:String,
             required:[true,"Product name must be Provided"]
         },
-        pricee:{
-            type:String,
+        price:{
+            type:Number,
             required:[true,"Product price must be Provided"]
         },
         featured:{
@@ -25,7 +25,7 @@ const productSchema = new mongoose.Schema(
         company:{
             type:String,
             enum:{
-                value:['ikea','liddy','caressa','marcos'],
+                values:["ikea","liddy","caressa","marcos"],
                 messege: '{VALUE} is not supported'
             }
             // enum:['ikea','liddy','caressa','marcos']
