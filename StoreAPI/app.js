@@ -1,15 +1,16 @@
 require('dotenv').config()
 
 //async errors
+require('express-async-errors')
 
 const express = require('express')
 const app = express()
 const connectDB = require('./db/connect')
-const productRoute = require('./routes/products')
+const productRouter = require('./routes/products')
 const errorHandlerMiddleware = require('./middleware/error-handler')
 const notFound =require('./middleware/not-found')
 
-const port = 3001
+const port = 3000
 
 // middleware
 app.use(express.json())
@@ -19,7 +20,7 @@ app.get('/',(req,res)=>{
     res.send('<h1>Store API</h1><a href="/api/v1/products">Products Route</a>')
 })
 
-app.use('/api/v1/products',productRoute)
+app.use('/api/v1/products',productRouter)
 // Product route
 
 app.use(notFound)
