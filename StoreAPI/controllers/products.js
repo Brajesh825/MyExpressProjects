@@ -8,7 +8,25 @@ const getAllProductsStatic = async (req,res)=>{
 }
 
 const getAllProducts = async (req,res)=>{
-    res.status(200).json({msg:"Product Route"})
+
+    const {name,company,featured} =req.query
+    queryObject={}
+    if(name)
+    {
+        queryObject.name = { $regex :name ,$option: 'i'}
+    }
+    if(company)
+    {
+        queryObject.company = company
+    }
+    if(featured)
+    {
+        queryObject.featured = featured===true?true:false
+    }
+    console.log(queryObject);
+
+    const products = await Product.find(queryObject)
+    res.status(200).json({products,nbHits: products.length})
 }
 
 module.exports = {getAllProducts,getAllProductsStatic}
