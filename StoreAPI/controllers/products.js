@@ -35,8 +35,6 @@ const getAllProducts = async (req,res)=>{
     if(fields){
         const fieldList = fields.split(',').join(' ')
         result = result.select(fieldList)
-    }else{
-        // result = result.select('')
     }
     products =  await result
     res.status(200).json({products,nbHits: products.length})
