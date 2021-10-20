@@ -8,11 +8,11 @@ const getAllProductsStatic = async (req,res)=>{
 const getAllProducts = async (req,res)=>{
 
     const {name,company,featured,sort,fields,numericFilters} =req.query
-    queryObject={}
+    const queryObject={}
     // Filter
     if(name)
     {
-        queryObject.name = { $regex :name ,$option: 'i'}
+        queryObject.name = { $regex :name ,$options: 'i'}
     }
     if(company)
     {
@@ -27,8 +27,8 @@ const getAllProducts = async (req,res)=>{
         const operatorMap = {
             '>': '$gt',
             '>=': '$gte',
-            '<': '$st',
-            '<=': '$ste',
+            '<': '$lt',
+            '<=': '$lte',
             '=': '$eq',
         }
         const regEx = /\b(<|>|<=|>=|=)\b/g
@@ -44,7 +44,6 @@ const getAllProducts = async (req,res)=>{
             }
         })
     } 
-
     // Result
     let result = Product.find(queryObject)
     // Sort
