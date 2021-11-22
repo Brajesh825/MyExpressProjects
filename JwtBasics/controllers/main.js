@@ -24,24 +24,9 @@ const login = async(req,res)=>{
 }
 
 const dashboard = async (req,res) =>{
-    const authHeader = req.headers.authorization;
-    // console.log(authHeader)
-
-    if(!authHeader || !authHeader.startsWith('Bearer '))
-    {
-        throw new CustomAPIError('No Token Provided',401)
-    }
-    const token = authHeader.split(" ")[1]
-
-    try{
-        const decoded = jwt.verify(token,process.env.JWT_SECRET)
-        console.log(decoded);
-    }catch(error){
-       throw new CustomAPIError('Not authorized to access this route',401)
-    }    
-
+    
     const luckyNumber = Math.floor(Math.random()*100)
-    res.status(200).json({msg:`Hello, Brajesh`,secret:`Your lucky number is ${luckyNumber}`})
+    res.status(200).json({msg:`Hello, ${req.user.username}`,secret:`Your lucky number is ${luckyNumber}`})
 }
 
 module.exports = {
