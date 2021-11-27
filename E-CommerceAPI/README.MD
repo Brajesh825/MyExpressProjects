@@ -35,7 +35,7 @@ docgen build -i fileName.json -o index.html
 
 #### User Model
 
-- [] create models folder and User.js file
+- [X] create models folder and User.js file
 - [] create schema with name,email, password (all type:String)
 - [] export mongoose model
 
