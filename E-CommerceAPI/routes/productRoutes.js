@@ -20,7 +20,7 @@ router
 
 router
     .route('/uploadImage')
-    .post([authenticateUser,authorizePermissions('admin')],updateProduct)
+    .post([authenticateUser,authorizePermissions('admin')],uploadImage)
 
 router
     .route('/:id')
